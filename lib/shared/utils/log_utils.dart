@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart' show TargetPlatform, defaultTargetPlatform, kDebugMode;
 import 'package:logging/logging.dart';
+
 import 'result.dart';
 
 extension LogColorExtension on String {

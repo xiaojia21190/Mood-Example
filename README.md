@@ -10,9 +10,9 @@
 </h1> 
 
 <p align="center">
-  <a href="/CHANGELOG.md"><img alt="Mood-Example v1.9.13" src="https://img.shields.io/badge/Mood--Example-v1.9.13-3e4663"/></a> 
-  <a href="https://flutter.dev/"><img alt="Flutter v3.44.2" src="https://img.shields.io/badge/Flutter-v3.44.2-0468D7"/></a> 
-  <a href="https://dart.dev/"><img alt="Dart v3.12.2" src="https://img.shields.io/badge/Dart-v3.12.2-04599C"/></a> 
+  <a href="/CHANGELOG.md"><img alt="Mood-Example v1.9.14" src="https://img.shields.io/badge/Mood--Example-v1.9.14-3e4663"/></a> 
+  <a href="https://flutter.dev/"><img alt="Flutter v3.47.0" src="https://img.shields.io/badge/Flutter-v3.47.0-0468D7"/></a> 
+  <a href="https://dart.dev/"><img alt="Dart v3.13.0" src="https://img.shields.io/badge/Dart-v3.13.0-04599C"/></a> 
   <a href="https://github.com/AmosHuKe/Mood-Example/blob/main/LICENSE"><img alt="BSD-3-Clause License" src="https://img.shields.io/badge/License-BSD--3--Clause-green"/></a> 
 </p> 
 
@@ -98,13 +98,13 @@
 
 Windows:   
 ```
-[√] Flutter (Channel stable, 3.44.2, on Microsoft Windows)
+[√] Flutter (Channel stable, 3.47.0, on Microsoft Windows)
 [√] Android toolchain - develop for Android devices (Android SDK version 37.0.0)
 ```  
 
 macOS:   
 ```
-[✓] Flutter (Channel stable, 3.44.2, on macOS)
+[✓] Flutter (Channel stable, 3.47.0, on macOS)
 [✓] Android toolchain - develop for Android devices (Android SDK version 37.0.0)
 ```  
 

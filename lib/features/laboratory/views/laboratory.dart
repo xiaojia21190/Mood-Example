@@ -1,7 +1,7 @@
 // dart format width=80
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:remixicon/remixicon.dart';
 
 import '../../../l10n/gen/app_localizations.dart';

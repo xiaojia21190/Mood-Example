@@ -1,6 +1,6 @@
+import 'package:cupertino_ui/cupertino_ui.dart';
 import 'package:fl_chart/fl_chart.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:provider/provider.dart';
 import 'package:remixicon/remixicon.dart';
 
@@ -150,9 +150,8 @@ class StatisticBody extends StatelessWidget {
                     builder: (context, data, child) {
                       return StatisticLayout(
                         title: appL10n.statistic_moodStatistics_title,
-                        subTitle: AppL10n.of(
-                          context,
-                        ).statistic_moodStatistics_content(data.selectDays),
+                        subTitle: AppL10n.of(context)
+                            .statistic_moodStatistics_content(data.selectDays),
                         height: 480,
                         statistic: child!,
                       );
@@ -206,9 +205,8 @@ class OverallStatistics extends StatelessWidget {
                   ),
                   StatisticsCard(
                     icon: Remix.pulse_line,
-                    title: AppL10n.of(
-                      context,
-                    ).statistic_overall_moodScoreAverage_title(data.moodScoreAverage),
+                    title: AppL10n.of(context)
+                        .statistic_overall_moodScoreAverage_title(data.moodScoreAverage),
                     subTitle: appL10n.statistic_overall_moodScoreAverage_subTitle,
                   ),
                 ],

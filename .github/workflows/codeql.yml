@@ -16,6 +16,8 @@ on:
     paths-ignore:
       - '**.md'
 
+permissions: {}
+
 env:
   FLUTTER_VERSION: '3.44.2'
 
@@ -71,6 +73,7 @@ jobs:
       with:
         channel: stable
         version: ${{ env.FLUTTER_VERSION }}
+        cache-sdk: true
     - name: Flutter pub get
       if: matrix.build-mode == 'manual'
       run: flutter pub get

@@ -1,6 +1,6 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
+import 'package:cupertino_ui/cupertino_ui.dart';
 import 'package:local_auth/local_auth.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:provider/provider.dart';
 import 'package:remixicon/remixicon.dart';
 
@@ -111,9 +111,8 @@ class _KeyBodyState extends State<KeyBody> {
             ),
             title: Text(
               localAuthText,
-              style: Theme.of(
-                context,
-              ).textTheme.bodyMedium!.copyWith(fontSize: 14, fontWeight: .normal, height: 1.0),
+              style: Theme.of(context).textTheme.bodyMedium!
+                  .copyWith(fontSize: 14, fontWeight: .normal, height: 1.0),
             ),
             trailing: Semantics(
               label: localAuthText,
@@ -146,9 +145,8 @@ class _KeyBodyState extends State<KeyBody> {
               ),
               title: Text(
                 appL10n.app_setting_security_lock,
-                style: Theme.of(
-                  context,
-                ).textTheme.bodyMedium!.copyWith(fontSize: 14, fontWeight: .normal, height: 1.0),
+                style: Theme.of(context).textTheme.bodyMedium!
+                    .copyWith(fontSize: 14, fontWeight: .normal, height: 1.0),
               ),
               trailing: Semantics(
                 label: appL10n.app_setting_security_lock,

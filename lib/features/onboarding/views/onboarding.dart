@@ -1,6 +1,6 @@
 import 'package:card_swiper/card_swiper.dart';
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:remixicon/remixicon.dart';
 
 import '../../../l10n/gen/app_localizations.dart';

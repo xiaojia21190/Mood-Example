@@ -1,7 +1,6 @@
 // dart format width=80
-import 'package:flutter/material.dart';
-
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:provider/provider.dart';
 
 import 'l10n/gen/app_localizations.dart';
@@ -44,7 +43,10 @@ class Application extends StatelessWidget {
           theme: appTheme.lightTheme(),
           darkTheme: appTheme.darkTheme(),
           supportedLocales: AppL10n.supportedLocales,
-          localizationsDelegates: AppL10n.localizationsDelegates,
+          localizationsDelegates: [
+            AppL10n.delegate,
+            ...GlobalMaterialLocalizations.delegates,
+          ],
           locale: data.localeSystem ? null : data.locale,
           localeListResolutionCallback: (locales, supportedLocales) {
             Log.instance.info('App 当前的语言环境：$locales');

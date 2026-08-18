@@ -1,8 +1,8 @@
 import 'dart:math';
 
 import 'package:bonfire/bonfire.dart';
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:remixicon/remixicon.dart';
 
 import '../../../../../widgets/action_button/action_button.dart';

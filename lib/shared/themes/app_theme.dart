@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:provider/provider.dart';
+
 import '../config/multiple_theme_mode.dart';
 import '../providers/application_provider.dart';
 

@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+
 import '../../../domain/models/mood/mood_data_model.dart';
 
 class MoodContentEditProvider extends ChangeNotifier {

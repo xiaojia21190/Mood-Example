@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../../../domain/repositories/application/application_repository.dart';
 import '../../../shared/config/multiple_theme_mode.dart';

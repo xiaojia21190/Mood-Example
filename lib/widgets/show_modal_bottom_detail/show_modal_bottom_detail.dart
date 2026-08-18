@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:material_ui/material_ui.dart';
+
 import '../../shared/themes/app_theme.dart';
 
 /// 底部详情内容弹出

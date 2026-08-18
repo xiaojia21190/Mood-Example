@@ -1,5 +1,5 @@
 import 'package:bonfire/bonfire.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class Light extends GameDecoration {
   Light({required super.position, required super.size}) {

@@ -1,8 +1,8 @@
 import 'dart:math';
 
 import 'package:bonfire/bonfire.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../../../../../../shared/utils/log_utils.dart';
 import '../sprite_sheet/sprite_sheet_fire_ball.dart';
