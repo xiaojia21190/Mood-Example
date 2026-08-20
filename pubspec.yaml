@@ -55,6 +55,11 @@ dependencies:
   local_auth_android: 2.0.9 # Android 本地认证
   local_auth_darwin: 2.0.3 # iOS/macOS 本地认证
 
+  # Dart Hooks
+  hooks: 2.2.0
+  code_assets: 2.0.0
+  native_toolchain_c: 0.19.4
+
 # https://dart.dev/tools/pub/dependencies#dependency-overrides
 dependency_overrides:
 

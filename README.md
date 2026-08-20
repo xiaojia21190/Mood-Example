@@ -88,7 +88,7 @@
   - [x] uniapp 小程序（UniMPSDK v4.85）  
   - [x] 游戏合集（Bonfire, Flame）  
   - [x] 3D 城市（obj 格式）  
-  - [x] FFI 异步调用 C/C++  
+  - [x] FFI (Hooks) 异步调用 C/C++  
 ……
 
 
@@ -171,17 +171,13 @@ $ flutter test integration_test/app_test.dart --dart-define=test_mode=true
 │   │   │   │   │   │   │   └── UniMpConfigFactory.kt # UniMPSDK 初始化配置
 │   │   │   │   │   │   ├── manager/
 │   │   │   │   │   │   │   └── UniMpManager.kt       # UniMPSDK 管理
-│   │   │   │   │   └── MainActivity.kt               # Flutter 的 Android 默认入口
-│   └── CMakeLists.txt                                # CMake（目前编译 FFI 需要的文件）
+│   └── └── └── └── └── MainActivity.kt               # Flutter 的 Android 默认入口
 ├── assets/                                           # 静态资源文件
 ├── build/                                            # 编译或运行后产物
+├── hook/                                             # FFI Hooks
 ├── integration_test/                                 # 集成测试
 │   └── app_test.dart                                 # 集成测试入口 用例
 ├── ios/                                              # iOS 工程文件
-│   ├── Classes/                                      # Classes（目前存放 FFI 相关文件）
-│   │   ├── include/
-│   │   │   └── dart_native_api/                      # DartNativeAPI 接口库
-│   │   └── ffi.cpp                                   # FFI 逻辑测试
 │   ├── Runner/                                       # Runner
 │   │   ├── UniMP/                                    # UniMPSDK 原生接入
 │   │   │   ├── Channel/

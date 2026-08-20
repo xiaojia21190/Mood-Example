@@ -61,14 +61,6 @@ android {
         ignoreAssetsPattern = "!.svn:!.git:.*:!CVS:!thumbs.db:!picasa.ini:!*.scc:*~"
     }
 
-    externalNativeBuild {
-        // Encapsulates your CMake build configurations.
-        cmake {
-            // Provides a relative path to your CMake build script.
-            path = file("../CMakeLists.txt")
-        }
-    }
-
     packaging {
         dex {
             useLegacyPackaging = true

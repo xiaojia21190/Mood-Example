@@ -1,23 +1,12 @@
 import 'dart:ffi';
-import 'dart:io';
-import 'dart:isolate';
 
 import 'package:cupertino_ui/cupertino_ui.dart';
 import 'package:go_router/go_router.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:remixicon/remixicon.dart';
 
-import '../../../../shared/utils/log_utils.dart';
 import '../../../../widgets/action_button/action_button.dart';
-
-/// 类型定义
-/// DartApi 初始化
-typedef NativeDartInitializeApiDL = Int32 Function(Pointer<Void> data);
-typedef DartInitializeApiDL = int Function(Pointer<Void> data);
-
-/// DartApi 注册线程
-typedef NativeRegisterSendPort = Void Function(Int64, Int);
-typedef RegisterSendPort = void Function(int, int);
+import 'ffi_bindings.dart';
 
 class FFIScreen extends StatefulWidget {
   const FFIScreen({super.key});
@@ -27,13 +16,8 @@ class FFIScreen extends StatefulWidget {
 }
 
 class _FFIScreenState extends State<FFIScreen> {
-  late DynamicLibrary dl;
-
-  /// 接收端口1
-  final ReceivePort receivePort1 = .new();
-
-  /// 接收端口2
-  final ReceivePort receivePort2 = .new();
+  NativeCallable<NativeResultCallback>? _cb1;
+  NativeCallable<NativeResultCallback>? _cb2;
 
   String testText1 = '';
   String testText2 = '';
@@ -43,82 +27,43 @@ class _FFIScreenState extends State<FFIScreen> {
   @override
   void initState() {
     super.initState();
-
-    ffiInit();
     ffiTest1();
     ffiTest2();
   }
 
   @override
   void dispose() {
-    receivePort1.close();
-    receivePort2.close();
-
     super.dispose();
   }
 
-  /// 初始化 FFI
-  void ffiInit() {
-    /// 加载库 符号表
-    dl = Platform.isAndroid ? .open('libffi.so') : .process();
-
-    /// 查找 DartApi 初始化函数
-    final initDartApiDL = dl.lookupFunction<NativeDartInitializeApiDL, DartInitializeApiDL>(
-      'InitDartApiDL',
-    );
-
-    /// 调用初始化函数，并判断是否成功
-    final dartApiInited = initDartApiDL(NativeApi.initializeApiDLData);
-
-    if (dartApiInited == 0) {
-      Log.instance.success('初始化 Dart Native API 成功');
-    } else {
-      Log.instance.error('初始化 Dart Native API 失败');
-    }
-  }
-
-  /// FFI 测试1
+  /// FFI 测试 1：3 秒后回调
   void ffiTest1() {
-    /// 监听接收端口
-    receivePort1.listen((message) {
-      setState(() {
-        testText1 = '$message\ntype=${message.runtimeType}';
-        testLoading1 = false;
-      });
-
-      /// 关闭端口
-      receivePort1.close();
+    _cb1 = NativeCallable<NativeResultCallback>.listener((int threadId, int seconds) {
+      if (mounted) {
+        setState(() {
+          testText1 = '这是线程 $threadId\n设定 $seconds 秒后的消息';
+          testLoading1 = false;
+        });
+      }
+      _cb1?.close();
+      _cb1 = null;
     });
-
-    /// 查找 注册线程函数
-    final registerSendPort = dl.lookupFunction<NativeRegisterSendPort, RegisterSendPort>(
-      'RegisterSendPort',
-    );
-
-    /// 调用 开启线程并传入参数
-    registerSendPort(receivePort1.sendPort.nativePort, 3);
+    registerCallback(_cb1!.nativeFunction, 3);
   }
 
-  /// FFI 测试2
+  /// FFI 测试 2：1 秒后回调
   void ffiTest2() {
-    /// 监听接收端口
-    receivePort2.listen((message) {
-      setState(() {
-        testText2 = '$message\ntype=${message.runtimeType}';
-        testLoading2 = false;
-      });
-
-      /// 关闭端口
-      receivePort2.close();
+    _cb2 = NativeCallable<NativeResultCallback>.listener((int threadId, int seconds) {
+      if (mounted) {
+        setState(() {
+          testText2 = '这是线程 $threadId\n设定 $seconds 秒后的消息';
+          testLoading2 = false;
+        });
+      }
+      _cb2?.close();
+      _cb2 = null;
     });
-
-    /// 查找 注册线程函数
-    final registerSendPort = dl.lookupFunction<NativeRegisterSendPort, RegisterSendPort>(
-      'RegisterSendPort',
-    );
-
-    /// 调用 开启线程并传入参数
-    registerSendPort(receivePort2.sendPort.nativePort, 1);
+    registerCallback(_cb2!.nativeFunction, 1);
   }
 
   @override
@@ -134,7 +79,7 @@ class _FFIScreenState extends State<FFIScreen> {
           foregroundColor: Colors.black87,
           shadowColor: Colors.transparent,
           titleTextStyle: const .new(color: Colors.black, fontSize: 14),
-          title: const Text('FFI 异步调用 C/C++'),
+          title: const Text('FFI (Hook) 异步调用 C/C++'),
           leading: ActionButton(
             decoration: const BoxDecoration(
               color: Colors.transparent,
@@ -150,18 +95,12 @@ class _FFIScreenState extends State<FFIScreen> {
             child: Column(
               crossAxisAlignment: .start,
               children: [
-                Text(
-                  '接收端口 ${receivePort1.sendPort.nativePort} 信息：',
-                  style: const .new(fontSize: 14, fontWeight: .w600),
-                ),
+                const Text('线程 1 信息：', style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600)),
                 testLoading1
                     ? const CupertinoActivityIndicator(color: Colors.grey)
                     : Text(testText1, style: const .new(fontSize: 14)),
                 const SizedBox(height: 24),
-                Text(
-                  '接收端口 ${receivePort2.sendPort.nativePort} 信息：',
-                  style: const TextStyle(fontSize: 14, fontWeight: .w600),
-                ),
+                const Text('线程 2 信息：', style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600)),
                 testLoading2
                     ? const CupertinoActivityIndicator(color: Colors.grey)
                     : Text(testText2, style: const .new(fontSize: 14)),
